@@ -43,9 +43,11 @@ GIT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
 def fill_notebook_symlinks():
-    shutil.rmtree('/home/xilinx/jupyter_notebooks/symlinks')
+    symlinks_folder = '/home/xilinx/jupyter_notebooks/symlinks'
+    if os.path.exists(symlinks_folder):
+        shutil.rmtree(symlinks_folder)
     shutil.copytree(os.path.join(GIT_DIR, 'symlinks'),
-                    '/home/xilinx/jupyter_notebooks/symlinks')
+                    symlinks_folder)
 
 
 if len(sys.argv) > 1 and sys.argv[1] == 'install':
